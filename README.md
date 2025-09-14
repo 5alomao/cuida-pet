@@ -37,9 +37,7 @@ O CuidaPet é um sistema de autoatendimento completo para pet shops que permite 
 ## 🔄 Fluxo do Sistema
 
 ```mermaid
----
-id: cb1d2a92-ff63-4368-905b-7caa6bc6f8af
----
+
 flowchart TD
     A[Início do Sistema] --> B{Escolher Área}
 
