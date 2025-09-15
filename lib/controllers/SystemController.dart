@@ -1,45 +1,60 @@
-import 'dart:io';
 import '../models/Customer.dart';
+import '../utils/InputValidator.dart';
 import 'EmployeeController.dart';
 import 'MenuController.dart';
 
 class SystemController {
-  final EmployeeController funcionarioController = EmployeeController();
+  final EmployeeController employeeController = EmployeeController();
 
   void start() {
-    int? opcao;
+    int? option;
     do {
       print("\n=== Sistema de Autoatendimento Cuidapet ===");
       print("1 - Atender Cliente");
       print("2 - Área Restrita (Funcionários)");
       print("0 - Encerrar Sistema");
-      stdout.write("Escolha uma opção: ");
-      opcao = int.tryParse(stdin.readLineSync() ?? "");
 
-      switch (opcao) {
+      option = InputValidator.validateMenuOption("Escolha uma opção: ", 0, 2);
+
+      switch (option) {
         case 1:
-          _atenderCliente();
+          _serveCustomer();
           break;
         case 2:
-          funcionarioController.acessarAreaRestrita();
+          employeeController.accessRestrictedArea();
           break;
         case 0:
-          funcionarioController.exibirRelatorioFinal();
+          employeeController.showFinalReport();
           print("Encerrando sistema...");
           break;
-        default:
-          print("⚠️ Opção inválida. Tente novamente.");
       }
-    } while (opcao != 0);
+    } while (option != 0);
   }
 
-  void _atenderCliente() {
-    stdout.write("Digite seu nome: ");
-    final nome = stdin.readLineSync() ?? "Cliente";
-    final cliente = Customer(nome);
+  void _serveCustomer() {
+    bool continueService = true;
 
-    print("Olá, $nome! Vamos começar seu atendimento.");
-    final menu = MenuController(cliente, funcionarioController);
-    menu.exibirMenu();
+    while (continueService) {
+      final customerName = InputValidator.validateUserName("Digite seu nome: ");
+      final customer = Customer(customerName);
+
+      print("Olá, $customerName! Vamos começar seu atendimento.");
+      final menu = MenuController(customer, employeeController);
+      final purchaseCompleted = menu.showMenu();
+
+      // Se a compra foi finalizada, pergunta se quer atender outro cliente
+      if (purchaseCompleted) {
+        print("\n" + "=" * 50);
+        continueService = InputValidator.validateConfirmation(
+          "Deseja atender outro cliente?",
+        );
+        if (continueService) {
+          print("Preparando para próximo atendimento...\n");
+        }
+      } else {
+        // Se saiu sem finalizar compra, retorna ao menu principal
+        continueService = false;
+      }
+    }
   }
 }
