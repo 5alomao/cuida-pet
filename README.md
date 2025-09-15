@@ -246,10 +246,6 @@ flowchart TD
    ===========================
    ```
 
-## 📚 Link para a Wiki
-
-[Em desenvolvimento] - Wiki detalhada será disponibilizada em breve com exemplos de uso, troubleshooting e documentação técnica completa.
-
 ## 🏗️ Estrutura do Projeto
 
 ```
