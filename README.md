@@ -67,6 +67,8 @@ flowchart TD
     K --> R[Exibir Itens do Carrinho]
     R --> G
 
+    M --> A
+
     L --> S{Carrinho Vazio?}
     S -->|Sim| T[Aviso: Carrinho Vazio]
     T --> G
@@ -95,7 +97,7 @@ flowchart TD
     AG --> A
     AF -->|Sim| AH[Menu de Funcionário]
 
-    AH --> AI{Escolher Opção}
+    AH --> AI{Escolhor Opção}
     AI -->|1| AJ[Registrar Venda Manual]
     AI -->|2| AK[Ver Relatório Parcial]
     AI -->|3| AL[Criar Cupom]
@@ -120,15 +122,15 @@ flowchart TD
     E --> AT[Relatório Final]
     AT --> AU[Sistema Encerrado]
 
-    %% Estilização
-    classDef clientFlow fill:#e1f5fe
-    classDef employeeFlow fill:#f3e5f5
-    classDef systemFlow fill:#fff3e0
-    classDef decisionFlow fill:#ffebee
+    %% Estilização Otimizada para TEMA ESCURO
+    classDef clientFlow fill:#0d47a1,stroke:#90caf9,color:#ffffff
+    classDef employeeFlow fill:#4a148c,stroke:#ce93d8,color:#ffffff
+    classDef systemFlow fill:#bf360c,stroke:#ffab91,color:#ffffff
+    classDef decisionFlow fill:#b71c1c,stroke:#ef9a9a,color:#ffffff
 
-    class C,F,G,H,I,J,K,L,N,O,P,Q,R,U,V,W,X,Y,Z,AA,AB,AC,AD clientFlow
-    class D,AE,AF,AH,AI,AJ,AK,AL,AM,AN,AO,AP,AQ,AR,AS employeeFlow
-    class A,B,E,AT,AU systemFlow
+    class C,F,G,I,J,K,L,N,O,P,Q,R,T,U,W,X,Z,AA,AB,AC clientFlow
+    class D,AE,AG,AH,AJ,AK,AL,AM,AN,AO,AP,AQ,AR,AS employeeFlow
+    class A,B,E,M,AT,AU systemFlow
     class H,S,V,Y,AF,AI,AD decisionFlow
 ```
 
